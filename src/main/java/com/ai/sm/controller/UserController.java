@@ -32,13 +32,14 @@ public class UserController {
 	private UserService uService;
 
 	@ModelAttribute("currentUserName")
-	public String  getCurrentUsername(HttpServletRequest session) {
+	public void  getCurrentUsername(HttpServletRequest session , HttpSession httpSes) {
 
 		String currentUserId = session.getRemoteUser();
 		List<UserDTO> currentUser = new ArrayList<>();
 		currentUser = uService.findByIdOrName(currentUserId, "");
 		String currentUserName = currentUser.get(0).getName();
-		return currentUserName;
+		httpSes.setAttribute("userId", currentUserId);
+		httpSes.setAttribute("userName", currentUserName);
 	}
 
 	@GetMapping(value = "/welcome")

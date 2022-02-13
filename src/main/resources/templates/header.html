@@ -13,7 +13,7 @@
 			<table>
 				<tr>
 					<td>User:</td>
-					<td><label th:text="${#httpServletRequest.remoteUser}"></label>&nbsp;&nbsp;&nbsp;<label th:text="${currentUserName}" ></label ></td>
+					<td><label th:text="${session.userId}"></label>&nbsp;&nbsp;&nbsp;<label th:text="${session.userName}" ></label ></td>
 					<!-- <td th:text="${session.userId}" />
 					<td th:text="${session.userName}" /> -->
 				</tr>

@@ -3,7 +3,6 @@ package com.ai.sm.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,10 +21,8 @@ import com.ai.sm.model.SearchBean;
 import com.ai.sm.model.StudentBean;
 import com.ai.sm.persistant.dto.ClassDTO;
 import com.ai.sm.persistant.dto.StudentDTO;
-import com.ai.sm.persistant.dto.UserDTO;
 import com.ai.sm.service.ClassService;
 import com.ai.sm.service.StudentService;
-import com.ai.sm.service.UserService;
 
 @Controller
 @RequestMapping("/user")
@@ -38,18 +35,6 @@ public class StudentController {
 	@Autowired
 	private ClassService cService;
 
-	@Autowired
-	private UserService uService;
-
-	@ModelAttribute("currentUserName")
-	public String  getCurrentUsername(HttpServletRequest session) {
-
-		String currentUserId = session.getRemoteUser();
-		List<UserDTO> currentUser = new ArrayList<>();
-		currentUser = uService.findByIdOrName(currentUserId, "");
-		String currentUserName = currentUser.get(0).getName();
-		return currentUserName;
-	}
 
 	@GetMapping(value = "/setupStudentSearch")
 	public ModelAndView setupStudentSearch(@ModelAttribute("Success") String Success, ModelMap model) {
